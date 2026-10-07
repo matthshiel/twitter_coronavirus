@@ -1,21 +1,21 @@
 # Coronavirus twitter analysis
 
 When Covid-19 started to gain prominence in early 2020, it is no surprise that people would start discusing it on platforms such as Twitter. This project looks at all geotagged tweets sent in the year 2020, and collects data on discussions regarding coronavirus and where these discussions are taking place from.
-
+:%s/\[\([^]*\)'\]/[\1]/g
 ## How it works
 
 We have 17 different hashtags that are related to covid-19
 
 
-['map.py'](src/map.py) parses one day of geotagged tweets and counts how often each of the 17 hashtags appears, broken down by the tweet's language and country
+[map.py](src/map.py) parses one day of geotagged tweets and counts how often each of the 17 hashtags appears, broken down by the tweet's language and country
 
-['run_maps.sh'](run_maps.sh) parallel processes ['map.py'](src/map.py). We thus run 366 map processes concurrently, one for each day of the year
+[run_maps.sh](run_maps.sh) parallel processes [map.py](src/map.py). We thus run 366 map processes concurrently, one for each day of the year
 
-['reduce.py'](src/reduce.py) is the reduce step of the Mapreduce method that merges the 366 different output files (from each of the map processes) to get the results for the whole year.
+[reduce.py](src/reduce.py) is the reduce step of the Mapreduce method that merges the 366 different output files (from each of the map processes) to get the results for the whole year.
 
-['visualize.py'](src/visualize.py) then plots the top 10 languages or countries under which any specific hashtags were used.
+[visualize.py](src/visualize.py) then plots the top 10 languages or countries under which any specific hashtags were used.
 
-['alternative_reduce'](src/alternative_reduce.py) allows us to see how usage of hashtags change over the course of the year.
+[alternative_reduce.py](src/alternative_reduce.py) allows us to see how usage of hashtags change over the course of the year.
 
 ## Plots
 
